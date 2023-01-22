@@ -20,6 +20,6 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/list-participant', function () {
-    return view('liste-participant');
-});
+Route::get('/list-participant', [App\Http\Controllers\ParticipantController::class,'index']);
+Route::post('/store-participants', [App\Http\Controllers\ParticipantController::class,'store'])
+->name('participant.store');

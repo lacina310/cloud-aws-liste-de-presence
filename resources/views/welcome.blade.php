@@ -8,6 +8,7 @@
     <meta name="description" content="Colorlib Templates">
     <meta name="author" content="Colorlib">
     <meta name="keywords" content="Colorlib Templates">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Title Page-->
     <title>Au Register Forms by Colorlib</title>
@@ -32,19 +33,26 @@
         <div class="card card-1">
             <div class="card-heading"></div>
             <div class="card-body">
+                <div class="" style="color: green">@if (Session::has('message')) {{ Session::get('message')}} @endif
+                </div>
                 <h2 class="title">Inscription</h2>
-                <form method="POST">
+                <form method="POST" action="{{ route('participant.store')}}">
+                    @csrf
                     <div class="input-group">
-                        <input class="input--style-1" type="text" placeholder="Nom du participant" name="name">
+                        <input class="input--style-1" type="text" placeholder="Nom du participant" name="nom" required>
+                        <span style="color: red;">  @error('nom') {{ $message }} @enderror </span>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-1" type="text" placeholder="Prénom du participant" name="name">
+                        <input class="input--style-1" type="text" placeholder="Prénom du participant" name="prenoms" required>
+                        <span style="color: red;">  @error('prenoms') {{ $message }} @enderror </span>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-1" type="text" placeholder="Numéro de téléphone" name="name">
+                        <input class="input--style-1" type="text" placeholder="Numéro de téléphone" name="tel" required>
+                        <span style="color: red;">  @error('tel') {{ $message }} @enderror </span>
                     </div>
                     <div class="input-group">
-                        <input class="input--style-1" type="text" placeholder="Adresse email" name="name">
+                        <input class="input--style-1" type="text" placeholder="Adresse email" name="email" required>
+                        <span style="color: red;">  @error('email') {{ $message }} @enderror </span>
                     </div>
                     <div class="p-t-20">
                         <button class="btn btn--radius btn--green" type="submit">S'inscrire</button>
@@ -64,6 +72,7 @@
 
 <!-- Main JS-->
 <script src="js/global.js"></script>
+
 
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
